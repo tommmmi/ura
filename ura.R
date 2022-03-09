@@ -74,3 +74,6 @@ ggplot(ura, aes(x = w, y = wday(date, week_start = 1, label = T))) +
         legend.direction = "horizontal",
         legend.key.size = unit(0.3, "cm"),
         legend.spacing.x = unit(0.2, "cm"))
+
+
+ggsave("ura.png", device = "png", width = 500, height = 500, units = "px", dpi = 180, scale = 3.9)
