@@ -14,7 +14,11 @@ fourp1.loppu <- as.Date("2017-12-10")
 atp.alku <- as.Date("2017-12-11")
 atp.loppu <- as.Date("2020-10-31")
 fourp2.alku <- as.Date("2020-11-01")
-fourp2.loppu <- today()
+fourp2.loppu <- as.Date("2022-05-03")
+atp2.alku <- as.Date("2022-05-04")
+atp2.loppu <- as.Date("2022-12-31")
+varha.alku <- as.Date("2023-01-01")
+varha.loppu <- today()
 
 # irtisanomisaika
 irt.aika <- 14
@@ -25,7 +29,9 @@ irt.aika <- 14
 ura <- rbind(data.table(date = seq(ty.alku, ty.loppu, 1), workplace = "Turun yliopisto Biostatistiikka"),
              data.table(date = seq(fourp1.alku, fourp1.loppu, 1), workplace = "4Pharma"),
              data.table(date = seq(atp.alku, atp.loppu, 1), workplace = "VSSHP Auria tietopalvelu"),
-             data.table(date = seq(fourp2.alku, fourp2.loppu + irt.aika, 1), workplace = "4Pharma"))
+             data.table(date = seq(fourp2.alku, fourp2.loppu, 1), workplace = "4Pharma"),
+             data.table(date = seq(atp2.alku, atp2.loppu, 1), workplace = "VSSHP Auria tietopalvelu"),
+             data.table(date = seq(varha.alku, varha.loppu + irt.aika, 1), workplace = "Varha Tietopalvelut"))
 
 # numeroi vuoden ja kuukauden mukaan viikkonumerot
 ura[, w := rleid(isoweek(date)), list(year(date), month(date))]
@@ -43,6 +49,7 @@ colmap <- colmap.names <- unique(ura$workplace)
 colmap[grepl("Auria", colmap, T)] <- "#56B4E9CC"
 colmap[grepl("Bio", colmap, T)] <- "#E69F00CC"
 colmap[grepl("4P", colmap, T)] <- "#4E79A7"
+colmap[grepl("Varha", colmap, T)] <- "#392D77CC"
 colmap[grepl("Viikonloppu", colmap, T)] <- "#CCCCCC"
 names(colmap) <- colmap.names
 
